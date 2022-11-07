@@ -1,3 +1,5 @@
+package model;
+
 public class Cart {
     
     private int cart_id; //장바구니아이디

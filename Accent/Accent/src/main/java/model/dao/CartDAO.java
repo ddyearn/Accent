@@ -1,3 +1,12 @@
+package model.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Cart;
+
 public class CartDAO{
 	private JDBCUtil jdbcUtil = null;
 	
@@ -89,12 +98,11 @@ public class CartDAO{
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 정보 발견
 				Cart cart = new Cart(		// Cart 객체를 생성하여 정보를 저장
-					cart_id,
 					rs.getString("name"),
 					rs.getInt("price"),
 					rs.getInt("cnt"),
 					rs.getString("member_id"),
-					rs.getInt("product_id"),					
+					rs.getInt("product_id"));					
 				return cart;
 			}
 		} catch (Exception ex) {
