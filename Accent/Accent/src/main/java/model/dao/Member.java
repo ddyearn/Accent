@@ -22,7 +22,7 @@ public class Member {
 		this.tel = tel;
 	}
 	
-	public Member(String name, String pwd, String email, String addr, String tel) {//update¿ë
+	public Member(String name, String pwd, String email, String addr, String tel) {//updateÂ¿Ã«
 		this.name = name;
 		this.pwd = pwd;
 		this.email = email;
