@@ -127,12 +127,11 @@ public class CartDAO{
 			List<Cart> cartList = new ArrayList<Cart>();	// Cart들의 리스트 생성
 			while (rs.next()) {
 				Cart cart = new Cart(			// Cart 객체를 생성하여 현재 행의 정보를 저장
-					rs.getInt("cart_id"),
 					rs.getString("name"),
 					rs.getInt("price"),
 					rs.getInt("cnt"),
 					rs.getString("member_id"),
-					rs.getInt("product_id"),);
+					rs.getInt("product_id"));
 				cartList.add(cart);				// List에 Cart 객체 저장
 			}		
 			return cartList;					
