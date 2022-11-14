@@ -13,7 +13,7 @@ public class QnaAnswerDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public QnaAnswerDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ý¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil Â°Â´ÃƒÂ¼ Â»Ã½Â¼Âº
 	}
 	private static QnaAnswerDAO instance = new QnaAnswerDAO();
 
