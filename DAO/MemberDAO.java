@@ -23,7 +23,7 @@ public class MemberDAO {
 	}
 
 	public int create(Member member) throws SQLException {
-		String sql = "INSERT INTO MEMBERINFO VALUES (?, ?, ?, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {member.getMember_id(), member.getName(), 
 						member.getPwd(), member.getResidentNum(), member.getEmail(), member.getAddr(), member.getTel()};				
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -43,7 +43,7 @@ public class MemberDAO {
 
 
 	public int update(Member member) throws SQLException {//사용자 이름, 비밀번호, 이메일, 주소, 전화번호만 수정 가능
-		String sql = "UPDATE MEMBERINFO "
+		String sql = "UPDATE MEMBER "
 					+ "SET name=?, pwd=?, email=?, addr=?, tel=? "
 					+ "WHERE member_id=?";
 		Object[] param = new Object[] {member.getName(), member.getPwd(), 
@@ -65,7 +65,7 @@ public class MemberDAO {
 	}
 
 	public int remove(int member_id) throws SQLException {
-		String sql = "DELETE FROM MEMBERINFO WHERE member_id=?";		
+		String sql = "DELETE FROM MEMBER WHERE member_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {member_id});	
 
 		try {				
@@ -138,7 +138,7 @@ public class MemberDAO {
 	}
 
 	public boolean existingMember (int member_id) throws SQLException {
-		String sql = "SELECT count(*) FROM MEMBERINFO WHERE member_id=?";      
+		String sql = "SELECT count(*) FROM MEMBER WHERE member_id=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {member_id});	
 
 		try {
