@@ -14,7 +14,7 @@ public class MemberDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public MemberDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ê°ì²´ ìƒì„±
 	}
 	private static MemberDAO instance = new MemberDAO();
 
@@ -42,7 +42,7 @@ public class MemberDAO {
 	}
 
 
-	public int update(Member member) throws SQLException {//»ç¿ëÀÚ ÀÌ¸§, ºñ¹Ğ¹øÈ£, ÀÌ¸ŞÀÏ, ÁÖ¼Ò, ÀüÈ­¹øÈ£¸¸ ¼öÁ¤ °¡´É
+	public int update(Member member) throws SQLException {//ì‚¬ìš©ì ì´ë¦„, ë¹„ë°€ë²ˆí˜¸, ì´ë©”ì¼, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸ë§Œ ìˆ˜ì • ê°€ëŠ¥
 		String sql = "UPDATE MEMBER "
 					+ "SET name=?, pwd=?, email=?, addr=?, tel=? "
 					+ "WHERE member_id=?";
