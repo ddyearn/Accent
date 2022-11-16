@@ -11,40 +11,40 @@ import model.service.Order;
 
 public class orderDao {
 	private JDBCUtil jdbcUtil = null;
-	
-	public orderDao() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ý¼º
+
+	public orderDao() {
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	}
-		
+
 	public int create(Order order) throws SQLException {
-		String sql = "INSERT INTO PURCHASEIFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {order.getOrder_id(), order.getName(),
-				order.getPostcode(), order.getAddr(), order.getTel(),
-				order.getMemo(), order.getTotalPrice(), order.getStatus(),
-				order.getDateClosed(), order.getDateCancelled(), order.getMemberId()
-				};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
-						
-		try {				
-			int result = jdbcUtil.executeUpdate();	// insert ¹® ½ÇÇà
+		String sql = "INSERT INTO PURCHASEIFO VALUES (?, ?, ?, ?, ?, ?)";
+		Object[] param = new Object[] {
+				order.getOrder_id(), order.product_id(),
+				order.getAddr(), order.getTel(),
+				order.getTotalPrice(),order.getMemberId()
+		};
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+		try {
+			int result = jdbcUtil.executeUpdate();	// insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {		
+		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
-		}		
-		return 0;			
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
+		}
+		return 0;
 	}
 
 
 	public int remove(String userId) throws SQLException {
-		String sql = "DELETE FROM PURCHASEINFO WHERE userid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
-		
-		try {				
-			int result = jdbcUtil.executeUpdate();	// delete ¹® ½ÇÇà
+		String sql = "DELETE FROM PURCHASEINFO WHERE userid=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtilï¿½ï¿½ deleteï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+		try {
+			int result = jdbcUtil.executeUpdate();	// delete ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -52,55 +52,52 @@ public class orderDao {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
-		}		
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
+		}
 		return 0;
 	}
 
-	/*
-	 * ÁÖ¾îÁø ÁÖ¹® ID¿¡ ÇØ´çÇÏ´Â ÁÖ¹® Á¤º¸¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£¾Æ Order µµ¸ÞÀÎ Å¬·¡½º¿¡ 
-	 * ÀúÀåÇÏ¿© ¹ÝÈ¯.
-	 */
+
 	public Order findOrder(String order_id) throws SQLException {
-		String sql = "SELECT name, postCode, memo, addr, tel, totalPrice, status, dateClosed, dateCancelled"
-    				+ "WHERE order_id=? ";              
-				jdbcUtil.setSqlAndParameters(sql, new Object[] {order_id});
+		String sql = "SELECT product_id, addr, tel, totalPrice, member_id"
+				+ "WHERE order_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {order_id});
 
 		try {
-				ResultSet rs = jdbcUtil.executeQuery();	
-				if (rs.next()) {
-					Order order = new Order();
-					return order;
-				}
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				Order order = new Order();
+				return order;
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/*
-	 * ÀüÃ¼ ÁÖ¹® Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹ÝÈ¯
+	 * ï¿½ï¿½Ã¼ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	 */
 	public List<Order> findOrderList() throws SQLException {
-        String sql = "SELECT order_id, name, addr"
-     		   			+ "ORDER BY order_id";
-					jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil¿¡ query¹® ¼³Á¤
-			
+		String sql = "SELECT order_id, name, addr"
+				+ "ORDER BY order_id";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
-			List<Order> orderList = new ArrayList<Order>();	// UserµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();			// query ï¿½ï¿½ï¿½ï¿½
+			List<Order> orderList = new ArrayList<Order>();	// Userï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
 				Order order = new Order();
-				orderList.add(order);				// List¿¡ User °´Ã¼ ÀúÀå
-			}		
-			return orderList;					
-			
+				orderList.add(order);				// Listï¿½ï¿½ User ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+			}
+			return orderList;
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
