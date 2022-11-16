@@ -7,19 +7,14 @@ import java.util.List;
 public class Order {
 
 	private int order_id;
-	private String name;
-	private String postCode;
+	private String product_id;
 	private String addr;
 	private String tel;
-	private String memo;
-	private Date dateRaised;
-	private String totalPrice;
-	private int status;
-	private Date dateClosed;
-	private Date dateCancelled;
+	private int totalPrice;
+	private String member_id;
 	private List<Item> items = new ArrayList<>();
-	
-//	public Order(int order_id, String name, String postCode, String addr, String tel, String memo, Date dateRaised, String totalPrice, int status,Date dateClosed, Date dateCancelled) {
+
+	//	public Order(int order_id, String name, String postCode, String addr, String tel, String memo, Date dateRaised, String totalPrice, int status,Date dateClosed, Date dateCancelled) {
 //		super();
 //		this.order_id = order_id;
 //		this.name = name;
@@ -38,39 +33,17 @@ public class Order {
 		order.setStatus(1);
 		return order;
 	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
 	public void confirm(Order order) {
 		order.setStatus(2);
 	}
 	public void cancel(Order order) {
 		order.setStatus(3);
 	}
-	public void close() {
-		
-	}
+	public void close() { }
 	public void addItem(Item Ordereditem) {
 		items.add(Ordereditem);
 	}
-	public Date getDateRaised() {
-		return dateRaised;
-	}
-	public void setDateRaised(Date dateRaised) {
-		this.dateRaised = dateRaised;
-	}
-	public Date getDateClosed() {
-		return dateClosed;
-	}
-	public void setDateClosed(Date dateClosed) {
-		this.dateClosed = dateClosed;
-	}
-	public Date getDateCancelled() {
-		return dateCancelled;
-	}
-	public void setDateCancelled(Date dateCancelled) {
-		this.dateCancelled = dateCancelled;
-	}
+
 	public List<Item> getItems(){
 		return items;
 	}
@@ -80,15 +53,11 @@ public class Order {
 	public int getStatus() {
 		return status;
 	}
-	public Object getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public Object getOrder_id() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public Object getPostcode() {
+	public Object getProduct_id() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -97,10 +66,6 @@ public class Order {
 		return null;
 	}
 	public Object getTel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public Object getMemo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
