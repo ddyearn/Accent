@@ -1,0 +1,87 @@
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background: #F5F5F5;
+}
+
+
+button {
+	border: 0px;
+}
+
+div.title {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 25px;
+	line-height: 58px;
+
+	color: #000000;
+	text-align: center;
+	
+}
+
+div.buttonBox {
+	text-align: center;
+}
+
+img.mainbar {
+	 width: 100%;
+	 height: 130px;
+	 overflow: hidden;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+
+table.table_mp {
+	border-radius: 30px;
+	width: 1200px;
+	height: 200px;
+	margin: auto;
+	text-align: center;
+	
+	background-color: #EBEBEB;
+}
+
+th {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 46px;
+
+	color: #000000;
+}
+
+th.th_id {
+	border-right: 1px solid #444444;
+}
+td.td1 {
+
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 30px;
+	line-height: 44px;
+
+	color: #6D6D6D;
+
+}
+#order {
+	padding: 15px;	
+}
+
+#basket {
+	padding: 15px;	
+}
+
+#wishlist {
+	padding: 15px;	
+}
+
+#myinfo {
+	padding: 15px;	
+}
