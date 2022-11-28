@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewComment">
+	<select id="getList" parameterType="int" resultType="reviewCommentDto">
+		select num,writer,content,target_id,ref_group,
+			comment_group,deleted,board_review_comment.regdate
+		from board_review_comment
+		inner join tbl_member
+		on board_review_comment.writer=tbl_member.userId
+		where ref_group=#{ref_group}
+		order by comment_group asc,num asc
+	</select>
+	<delete id="delete" parameterType="int">
+		update board_review_comment
+		set deleted='yes'
+		where num=#{num}
+	</delete>
+	<insert id="insert" parameterType="reviewCommentDto">
+		insert into board_review_comment
+		(num,writer,content,target_id,ref_group,comment_group,regdate)
+		values(#{num},#{writer},#{content},#{target_id},#{ref_group},
+			#{comment_group},sysdate)
+	</insert>
+	<select id="getSequence" resultType="int">
+		select board_review_comment_seq.NEXTVAL
+		from dual
+	</select>
+	<update id="update" parameterType="reviewCommentDto">
+		update board_review_comment
+		set content=#{content}
+		where num=#{num}
+	</update>
+</mapper>

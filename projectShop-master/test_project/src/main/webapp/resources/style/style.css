@@ -1,0 +1,1089 @@
+@charset "UTF-8";
+
+/* home css */
+h1{
+	margin-top:30px;
+	text-align:center;
+}
+
+.home_div{	
+	width: 500px;
+	height:500px;
+	position:relative;
+	top: 200px;
+	margin: 0 auto;
+}	
+.home_img1{
+	width: 100%;
+	height:100%;
+	z-index: 1;
+	position:absolute;
+}
+.home_img2{
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	position:absolute;
+}
+
+/* header_ box*/
+.header_box {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+
+/* logo img*/
+#index_logo_div {
+    width: 200px;
+    position: absolute;
+    padding: 10px;
+	left: 45%;
+}
+#index_logo_img{
+	width: 100%;
+}
+
+/* navbar */
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+ol, ul {
+    margin-top: 5;
+    margin-bottom: 10px;
+}
+
+.nav-tabs>li>a {
+    margin-right: 0px; 
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: none;
+}
+.nav>li>a {
+    margin: 0;
+    position: relative;
+    display: block;
+    top:10px;
+    padding: 10px 10px;
+}
+[role=button] {
+    cursor: pointer;
+}
+a {
+    color: #424242;
+    text-decoration: none;
+}
+.nav-tabs>li>a:hover {
+    border-color: none;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #656565;
+}
+
+a:focus, a:hover {
+    color: #E6E6E6;
+    text-decoration: underline;
+}
+a:active, a:hover {
+    outline: 0;
+}
+
+li {
+    text-align: -webkit-match-parent;
+}
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+.navbar-left {
+    float: left!important;
+    margin-left: 200px;
+}
+.navbar-right {
+    float: right!important;
+    margin-right: 200px;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: none;
+    border-left: none;
+}
+
+.navText{
+	margin: 0;
+    position: relative;
+    display: block;
+    top:10px;
+    padding: 10px 10px;
+    padding-top: 15px;
+}
+.form-control{
+display:inline-block;
+width:auto;
+padding-bottom:10;
+vertical-align:middle;
+}
+
+.nav>li>a>img {
+   max-width: none;
+   position: relative;
+   bottom: 4px;
+}
+
+.nav>li>#ms {
+    position: relative;
+    display: block;
+    top: 10px;
+    padding: 10px 10px;
+    margin-top: 5px;
+}
+
+/*content img*/
+.oriImg{width: 500px; height: auto}
+
+.thumbImg{width: 200px; height: auto}
+
+#container_box{
+	margin: 60px;
+}
+
+#container_box table td { width:150px; }
+
+.thumbImg{width: 100px; height: 70px;}
+
+.select_img img{width: 500px; margin: 20px 0;}
+
+
+/* notice 중요글 제목 사이즈 */
+#title {
+	font-size: 18px;
+    color: red;
+}
+
+
+
+/* 댓글에 관련된 css */
+.comments ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.comments ul li {
+	border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
+}
+
+.comments dt {
+	margin-top: 5px;
+}
+
+.comments dd {
+	margin-left: 26px;
+}
+
+.comments form textarea, .comments form button {
+	float: left;
+}
+
+.comments li {
+	clear: left;
+}
+
+.comments form textarea {
+	width: 85%;
+	height: 100px;
+}
+
+.comments form button {
+	width: 15%;
+	height: 100px;
+}
+/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
+.comment form {
+	display: none;
+}
+
+.comment {
+	position: relative;
+}
+
+.comment .reply_icon {
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 10px;
+	left: 30px;
+}
+
+.comments .user-img {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+
+/* 별점 css */
+ #star_grade a{
+    text-decoration: none;
+    color: gray;
+}
+#star_grade a.on{
+    color: red;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#777;}
+
+.star-rating {
+      width: 75px;
+   }
+   
+.star-rating, .star-rating span {
+   display: inline-block;
+   height: 14px;
+   overflow: hidden;
+   background:
+      url(../images/star.png)
+      no-repeat;
+}
+
+.star-rating span {
+   background-position: left bottom;
+   line-height: 0;
+   vertical-align: top;
+}
+
+/* 베스트 & 최신 상품  */
+
+#newItemBox{
+  	width: 1100px;
+    margin: auto;
+    margin-top: 50px;
+}
+#bestItemBox{
+	width: 1100px;
+    margin: auto;
+    margin-top: 50px;
+}
+#indexItemImg{
+	width:250px;
+	height: 300px;
+}
+/*------------------------강승현---------------------------*/
+#star_grade a{
+	color: green;
+}
+.btn {
+	width: 50px;
+	height: 30px;
+	border: 1px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 0 20px;
+	background: white;
+}
+.orderbtn {
+	width: 100px;
+	height: 50px;
+	border: 1px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
+
+.orderbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.shopbtn {
+	width: 100px;
+	height: 50px;
+	border: 1px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
+
+.shopbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.eff {
+	width: 100px;
+	height: 50px;
+	border: 0px solid #34495e;
+	position: absolute;
+	transition: all .5s ease;
+	z-index: 1;
+	box-sizing: border-box;
+} 
+
+.orderbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.orderbtn:hover a {
+	color: #fff;
+}
+
+.shopbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.shopbtn:hover a {
+	color: #fff;
+}
+.table_center {
+display : table;
+margin-left : auto;
+margin-right : auto;
+}
+
+/* 마이페이지 */
+
+.mypage_btn{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+
+.container {
+    width: 1200px;
+}
+
+.mypage_btn_wrap:after {
+content:"";
+display:block;
+clear:both;
+}
+
+.mypage_btn .item {
+width:270px;
+float:left;
+margin-left: 65px;
+margin-bottom:30px;
+padding-bottom:20px;
+border:1px solid #a0a0a0;
+background:#ffffff;
+text-align:center;
+}
+
+.mypage_btn .item:hover {
+background:#f9d448;
+}
+.mypage_btn .item .mytitle {
+color:#101010;
+font-size:20px;
+margin-bottom:9x;
+margin-top:28px;
+font-weight:bold;
+}
+
+.mypage_btn .item .mytitle_kr {
+color:#101010;
+font-size:12px;
+margin-bottom:16px;
+font-weight:bold;
+}
+
+.mypage_btn .item .desc {
+color:#737373;
+font-size:12px;
+min-height:34px;
+padding:0 17px;
+}
+
+/* 장바구니 */
+.btn {
+	width: auto;
+	height: auto;
+	border: 1px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 0 20px;
+}
+.orderbtn {
+	width: 100px;
+	height: 50px;
+	border: 1px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+	background: white;
+}
+
+.orderbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.shopbtn {
+	width: 100px;
+	height: 50px;
+	border: 1px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
+
+.shopbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.eff {
+	width: 100px;
+	height: 50px;
+	border: 0px solid #34495e;
+	position: absolute;
+	transition: all .5s ease;
+	z-index: 1;
+	box-sizing: border-box;
+}
+
+.orderbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.orderbtn:hover a {
+	color: #fff;
+}
+
+.shopbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.shopbtn:hover a {
+	color: #fff;
+}
+.del{
+	text-align: center;
+	font-size: 14px;
+/*가운데 정렬*/
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 로그인 */
+.title {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    color: #e52731;
+    font-size: 21px;
+}
+.login_pg_box {
+    font-size: 12px;
+    color: #101010;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login_pg_box .item {
+    display: block;
+    margin-bottom: 10px;
+}
+.login_pg_box input[type="password"], .login_pg_box input[type="text"] {
+    margin: 0;
+    height: 50px;
+    line-height: 38px;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    padding: 0 5px;
+    width: 400px;
+    outline: none;
+}
+
+#signup_btn {
+    display: block;
+    width: 400px;
+    height: 50px;
+    border: 1px solid;
+    line-height: 50px;
+    text-align: center;
+    background: #fad448;
+    color: #333333;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+.login_pg_box .ot_link {
+	display: table; 
+	width: 400px;
+	margin: auto;
+	padding:0;
+    text-align: center;
+}
+.login_pg_box .ot_link li a {
+    display: block;
+    border: 1px solid #000000;
+    padding: 10px 0;
+    margin-top:10px;
+    margin-botton:10px;
+    margin-left:5px;
+    background: #fff;
+    transition: 0.2s;
+    width: 126.4px;
+}
+
+.icon>img{
+	width: 30px;
+	height: 30px;
+}
+
+.login_pg_box .ot_link li {
+	list-style:none;
+
+    float: left;
+    text-align: center;
+}
+.login_pg_box .ot_link li:nth-child(3n+1) a {
+    margin: 10px 5px 0 0;
+}
+.login_pg_box .ot_link li:nth-child(3n-1) a {
+    margin: 10px 5px;
+}
+
+#logincontent{
+	margin-top:200px;
+}
+
+/*회원가입*/
+.typeWrite {
+    table-layout: fixed;
+    width:950px;
+    line-height: 180%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signup{
+	width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-top:1px solid #444444;
+    border-bottom:1px solid #444444;
+    border-collapse: collapse;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.typeWrite th {
+    width: 170px;
+    padding: 20px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333;
+    border-right:0px solid #e8e8e8;
+    border-left:0px solid #e8e8e8;
+    border-bottom: 0px solid #e8e8e8;   
+}
+.typeWrite td{
+	border-left:0px solid #e8e8e8; 
+	border-right:0px solid #e8e8e8;
+	border-bottom: 0px solid #e8e8e8;
+}
+.typeWrite input {
+    width: 270px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#PassQuiz{
+	width: 250px;
+	height: 30px;
+}
+
+.typeWrite tr{
+    display: table-row;
+    vertical-align: inherit;
+	border-top:0px solid #e8e8e8;
+}
+
+#userAddrA{
+	width:114px;
+	margin-bottom: 2px;
+}
+
+#addrbtn{
+	width:114px;
+	height: 30px;
+	border: 1px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	background: white;
+}
+.typeWrite .sbtn{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+.signbtn {
+	width: 100px;
+	height: 50px;
+	border: 1px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin-right: 10px;
+}
+
+/* 상품 디테일 */
+#container_box .detail{
+	height: 500px;
+	margin-left: 80px;
+	margin-right: 80px;
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#container_box .detail .itemImg{
+    display: inline-block;
+    position: relative;
+    float: left;
+    width: 600px;
+}
+
+#container_box .detail .itemImg>img{
+	width: 450px;
+	height: 450px;
+	margin-left: 65px;
+}
+
+#container_box .detail .itemInfo{
+	position: relative;
+    float: right;
+    width: 500px;
+    margin-top: 90px;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+#container_box .detail .itemInfo>h2{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 23px !important;
+    font-weight: 600 !important;
+    font-family: 'Roboto','Lato',arial,"맑은 고딕",'Malgun Gothic',AppleGothic,"돋움",Dotum,sans-serif;
+    color: #000;
+}
+
+
+#container_box .detail .itemInfo .inputArea{
+	position: relative;
+    float: right;
+    width: 500px;
+}
+
+
+
+/* 판매가 글씨 */
+#container_box .detail .itemInfo .inputArea .dd{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;	
+}
+
+/* 상품가격 */
+#container_box .detail .itemInfo .inputArea .num{
+	font-size: 20px;
+    color: #f15b24;
+    font-weight: bold;
+    margin-left: 85px;
+}
+#container_box .detail .itemInfo .inputArea .num1 {
+    font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    margin-left: 69px;
+}
+#container_box .detail .itemInfo .inputArea .num2 {
+    font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    margin-left: 61px;
+}
+
+#container_box .detail .itemInfo .cartStock .dd{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    float: left;	
+	margin-top: 3px;
+}
+
+#container_box .detail .itemInfo .cartStock .num{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    margin-left: 150px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart{
+	width: 100%;
+    margin-bottom: 20px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCarts{
+	width: 100%;
+    margin-bottom: 20px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCarts .itembtn{
+    background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 65px;
+    margin-top: 10px;
+    margin-right:10px;
+}
+#container_box .detail .itemInfo .inputArea .addCart .wide{
+	width: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart .wide .btn_buy{
+	background: #fad448;
+    color: #333;
+    width: 250px;
+    height: 140px;
+    font-size: 25px;
+    border: 1px solid #34495e;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart .itembtn{
+	display: block;
+    background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 125px;
+    height: 65px;
+    margin-top: 10px;
+}
+
+#container_box .itemDes{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+#container_box .itemDes>p{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-thumbnail, .thumbnail {
+    box-shadow: 0 1px 2px rgba(0,0,0,.075);
+    border: 0px;
+}
+
+h4{
+	text-align: center;
+}
+
+.input_area{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#upPass_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:65px;
+}
+
+#searchId_btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:220px;
+}
+
+/* 아이디 찾기 , 비밀번호 찾기 */
+#find{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 150px;
+}
+
+#findbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#findbody th {
+    width: 80px;
+    padding: 20px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#findbody input {
+    width: 150px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#findpwd{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 70px;
+}
+
+#findpwdbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#findpwdbody th {
+    width: 130px;
+    padding: 10px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#findpwdbody input {
+    width: 220px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#update_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+/* 비밀번호 수정 페이지 */
+#searchupPass_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #34495e;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:165px;
+}
+#change{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 70px;
+}
+
+#changebody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#changebody tr{
+	margin-top:10px;
+}
+
+#changebody th {
+    width: 130px;
+    padding: 10px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#changebody input {
+    width: 220px;
+    height: 30px;
+    line-height: 18px;
+}
+
+/* 마스터 상품등록 */
+.reg{
+	width:1200px;
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+#cke_itemDes{
+	width: 1180px;
+	margin-left:1px;
+	margin-right':1px;
+}
+
+.inputArea #itemname{
+	margin-right:13px;
+}
+
+/* 페이징 처리 */
+.pagination{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 결제 완료 */
+.sbtn{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ordermain{
+
+}
+
+/*----------------------------윤주-----------------------------*/
+
+#underline {
+	text-decoration: underline;
+	text-underline-position: under;
+	text-decoration-style: solid;
+	text-decoration-color: darkred;
+}

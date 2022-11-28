@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+	
+	<insert id="insert" parameterType="UsersDto">
+		insert into tbl_member
+		(userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, 
+			email, userAddr1, userAddr2, userAddr3, birthday)		
+		values(#{userId}, #{userPass},#{PassQuiz}, #{QuizAnswer}, #{userName}, #{userPhone},
+				 #{email}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{birthday})
+	</insert>
+	
+	<select id="isExist" parameterType="java.lang.String" resultType="String">
+		select userId
+		from tbl_member
+		where userId=#{userId}
+	</select>
+	
+	<select id="getPassHash" parameterType="String" resultType="String">
+		select userPass
+		from tbl_member
+		where userId=#{userId}
+	</select>
+	
+	<select id="login" parameterType="String" resultType="UsersDto">
+		select 
+			userId,userName,userPass,regiDate,verify,userAddr1,userAddr2,userAddr3,userPhone,email
+			from tbl_member
+			where userId=#{inputUserId}	
+	</select>
+	
+	<select id="getData" parameterType="String" resultType="UsersDto">
+		select userId, userPass, userName, userPhone, email, 
+		userAddr1, userAddr2, userAddr3, TO_CHAR(birthday,'YYYY.MM.DD') AS birthday, TO_CHAR(regiDate,'YYYY.MM.DD') AS regiDate
+		from tbl_member
+		where userId=#{userId}
+	</select>
+	
+	<update id="updateUser" parameterType="UsersDto" >
+		update tbl_member
+		set userName=#{userName},userPhone=#{userPhone}, email=#{email},
+		userAddr1=#{userAddr1}, userAddr2=#{userAddr2}, userAddr3=#{userAddr3}
+		where userId=#{userId}
+	</update>
+	<update id="updatePwd" parameterType="UsersDto" >
+		update tbl_member
+		set userPass=#{newPass}
+		where userId=#{userId}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from tbl_member
+		where userId=#{userId}
+	</delete>
+	<select id="findId" parameterType="UsersDto" resultType="String">
+		select userId 
+		from tbl_member
+		where userName=#{userName} and userPhone=#{userPhone} and birthday=#{birthday}
+	</select>
+	
+	<select id="findPass" parameterType="UsersDto" resultType="String">
+		select userId
+		from tbl_member
+		where userId=#{userId} and PassQuiz=#{PassQuiz} and QuizAnswer=#{QuizAnswer} and 
+		userName=#{userName} and userPhone=#{userPhone} and email=#{email}
+	</select>
+
+	<update id="changeNewPassData" parameterType="UsersDto">
+		update tbl_member 
+		set userPass=#{userPass} 
+		where userId=#{userId} 
+	</update>
+</mapper>

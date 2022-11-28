@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+	<select id="list" resultType="categoryDto">
+ 	select  cateLevel, cateName, cateCode, cateCodeRef
+ 		from goods_category
+     start with cateCodeRef is null connect by prior cateCode = cateCodeRef
+	</select>
+	<insert id="itemInsert" parameterType="ItemDto">
+		insert into tbl_items (itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemThumbImg)
+		values (tbl_item_seq.nextval, #{itemName}, #{cateCode}, #{itemPrice}, #{itemCount}, #{itemDes}, #{itemImg}, #{itemThumbImg})
+	</insert>
+	
+	<select id="itemSelect"  resultType="ItemDto" parameterType="ItemDto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ 					from tbl_items
+ 					order by itemNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		
+	</select>
+	<select id="itemSelect_Count"  resultType="ItemDto">
+		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ 		from tbl_items
+ 		order by itemNum desc
+	</select>
+	
+	<select id="itemViewContent" parameterType="ItemDto" resultType="ItemDto">
+		 select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+     	from tbl_Items
+         where itemNum = #{itemNum}
+	</select>
+	<select id="itemViewData" parameterType="ItemViewDto" resultType="ItemViewDto">
+		 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName, itemPrice, itemCount, itemDes, itemImg, itemDate, itemThumbImg
+         from tbl_items i
+         inner join goods_category c
+         on i.cateCode = c.cateCode          
+         where i.itemNum = #{itemNum}
+	</select>
+	<update id="itemUpDate" parameterType="ItemDto">
+		 update tbl_Items
+     	 set itemName = #{itemName},
+         cateCode = #{cateCode},
+         itemPrice = #{itemPrice},
+         itemCount = #{itemCount},
+         itemDes = #{itemDes},
+         itemImg = #{itemImg},
+         itemThumbImg = #{itemThumbImg}
+         where itemNum = #{itemNum}
+	</update>
+	
+	<delete id="itemDelete">
+		delete from tbl_items where itemNum = #{itemNum}
+	</delete>
+
+	<update id="minusCount" parameterType="orderDetailDto">
+		update tbl_items
+		set itemCount=itemCount-#{quantity}
+		where itemNum=#{itemNum}
+	</update>
+	
+	<select id="select_orderList_Count" resultType="Orders_Dto">
+		select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			 TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		order by orderNum asc
+	</select>
+	
+	<select id="select_orderList" resultType="Orders_Dto" parameterType="Orders_Dto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			 TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		order by orderNum asc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+	<update id="resultItem" parameterType="OrdersDto">
+		 update orders
+     	 set delivery = #{delivery}
+         where orderNum = #{orderNum}
+	</update>
+	<select id="userAllList" resultType="UsersDto" parameterType="UsersDto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select * from tbl_member) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="userAllList_Count" resultType="UsersDto">
+		select * from tbl_member
+	</select>
+	<update id="userVerify">
+		update tbl_member
+		set verify = #{verify}
+		where userId = #{userId}	
+	</update>
+	<update id="addGetCount" parameterType="int">
+		update tbl_items
+		Set itemGetCount=itemGetCount+1
+		Where itemNum=#{itemNum}
+	</update>
+	<select id="bestItemList" resultType="ItemDto">
+		select * from tbl_items order by itemGetCount desc
+	</select>
+	<select id="newItemLsit" resultType="ItemDto">
+		SELECT * FROM tbl_items ORDER BY itemdate DESC
+	</select>
+</mapper>

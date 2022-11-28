@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Users_item">
+	<select id="getCount" parameterType="users_item_Dto" resultType="int">
+		select nvl(max(rownum),0)
+		from tbl_items
+		<choose>
+			<when test="itemName != null" >
+				where itemName like '%'||#{itemName}||'%'
+			</when>
+		</choose>
+	</select>
+
+	<select id="itemSelect"  resultType="users_item_Dto" parameterType="users_item_Dto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+	 		from tbl_items
+	 		order by itemNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="itemSelect_Count"  resultType="users_item_Dto">
+		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ 		from tbl_items
+ 		order by itemNum desc
+	</select>
+		<select id="itemViewContent" parameterType="users_item_Dto" resultType="users_item_Dto">
+		 select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+     	from tbl_Items
+         where itemNum = #{itemNum}
+	</select>
+	<select id="cateList" resultType="users_item_Dto" parameterType="users_item_Dto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode          
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="cateList_Count" resultType="users_item_Dto">
+		select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode          
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+	</select>
+	<select id="cateList2" resultType="users_item_Dto" parameterType="users_item_Dto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM(select  i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+	    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+	        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="cateList2_Count" resultType="users_item_Dto">
+		select  i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+	</select>
+</mapper>

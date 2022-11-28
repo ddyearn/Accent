@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* 목록에서 아이템 이미지 크기 */
+#itemImg{
+	width: 100px;
+	height: auto;
+}
+
+/* orderform에서 필수입력사항  */
+ #required{
+     color: red;
+ }
+ 
+ /* table caption, form 디자인*/
+#caption{
+ 	  font-weight: bold;
+ }
+ #orderform_t{
+ 	border-top: 1px solid #DEDCDC;
+  border-collapse: collapse;
+ }
+ 
+/*아이템 디테일에서 밑줄*/ 
+ #underline {
+	text-decoration: underline;
+	text-underline-position: under;
+	text-decoration-style: solid;
+	text-decoration-color: darkred;
+}

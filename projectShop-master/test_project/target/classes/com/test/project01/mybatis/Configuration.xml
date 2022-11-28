@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<typeAliases>
+  		<typeAlias type="com.test.project01.users.Dto.UsersDto" alias="usersDto"/>
+  		<typeAlias type="com.test.project01.master.category.Dto.categoryDto" alias="categoryDto"/>
+  		<typeAlias type="com.test.project01.master.category.Dto.ItemDto" alias="itemDto"/>
+  		<typeAlias type="com.test.project01.master.category.Dto.ItemViewDto" alias="itemViewDto"/>
+  		<typeAlias type="com.test.project01.master.category.Dto.Orders_Dto" alias="Orders_Dto"/>  				
+  		<typeAlias type="com.test.project01.qna.dto.QnaDto" alias="qnaDto"/>
+  		<typeAlias type="com.test.project01.qna.dto.QnaJoinDto" alias="qnaJoinDto"/>
+  		<typeAlias type="com.test.project01.qna.dto.QnaCommentDto" alias="qnaCommentDto"/>
+  		<typeAlias type="com.test.project01.notice.dto.NoticeDto" alias="noticeDto"/>
+  		<typeAlias type="com.test.project01.utils.UpLoadFileUtils" alias="UpLoadFileUtils"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewDto" alias="reviewDto"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewJoinDto" alias="reviewJoinDto"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewCommentDto" alias="reviewCommentDto"/>
+  		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
+  		<typeAlias type="com.test.project01.unknown.Dto.Unknown_itemDto" alias="unknown_itemDto"/>
+  		<typeAlias type="com.test.project01.users_item.Dto.Users_item_Dto" alias="users_item_Dto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrdersDto" alias="ordersDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailDto" alias="orderDetailDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailJoinDto" alias="orderDetailJoinDto"/>
+  		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewUpCountDto" alias="reviewUpCountDto"/>
+  		<typeAlias type="com.test.project01.cart.dto.wishlistDto" alias="wishlistDto"/>
+
+
+  	</typeAliases>
+  	<mappers>
+  		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/categoryMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/NoticeMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/QnaMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/QnaCommentMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/ReviewMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/ReviewCommentMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/UnknownMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/Users_item_Mapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/OrderMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
+  	</mappers>	
+  </configuration>

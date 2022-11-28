@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+	<insert id="addCart" parameterType="cartlistDto">
+		insert into cartList
+		(cartNum, userId, itemNum, cartStock, itemPrice)
+		values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock},
+		#{itemPrice})
+	</insert>
+
+	<select id="cartList" resultType="cartlistDto">
+		select
+		row_number() over(order by c.cartNum desc) as num,
+		c.cartNum, c.userId, c.itemNum, c.cartStock, c.addDate,
+		i.itemName, i.itemPrice, i.itemImg,(c.cartStock*c.itemPrice)money, i.itemCount
+		from cartList c
+		inner join tbl_items i
+		on c.itemNum = i.itemNum
+		where c.userId = #{userId}
+	</select>
+
+	<delete id="deleteCart">
+		delete from cartList
+		where cartNum=#{cartNum}
+	</delete>
+
+	<update id="modifyCart">
+		update cartList
+		set cartStock=#{cartStock}
+		where
+		userId=#{userId} and itemNum=#{itemNum}
+	</update>
+
+	<select id="countCart" resultType="int">
+		select count(*) from cartList
+		where userId=#{userId} and itemNum=#{itemNum}
+	</select>
+
+	<update id="updateCart">
+		update cartList
+		set cartStock=#{cartStock}
+		where cartNum=#{cartNum}
+	</update>
+
+	<select id="sumMoney" resultType="int">
+		select nvl(sum(c.itemPrice *
+		c.cartStock),0) money
+		from cartList c, tbl_items i
+		where
+		c.itemNum=i.itemNum and c.userId=#{userId}
+	</select>
+
+
+	<delete id="deleteAll" parameterType="String">
+		delete from cartList
+		where
+		userId=#{userId}
+	</delete>
+	
+	<insert id="addWish" parameterType="wishlistDto">
+ 		insert into wishlist
+ 		 (wishNum, userId, itemNum)
+    	 values (wishlist_seq.nextval, #{userId}, #{itemNum})
+	</insert>
+	<select id="wishlist" resultType="wishlistDto" parameterType="String">
+		select
+     		row_number() over(order by w.wishNum desc) as num,
+     		w.wishNum, w.userId, w.itemNum, w.addDate,
+    		 i.itemName, i.itemPrice, i.itemImg
+		 from wishlist w
+    		 inner join tbl_items i
+    		     on w.itemNum = i.itemNum   
+   		  where w.userId = #{userId}	
+	</select>
+	<delete id="deleteWish" parameterType="int">
+		delete from wishlist
+		where wishNum=#{wishNum}
+	</delete>
+	<insert id="insertCart" parameterType="cartlistDto">
+		insert into cartList
+ 		(cartNum, userId, itemNum)
+    	values (cartList_seq.nextval, #{userId}, #{itemNum})
+	</insert>
+	<select id="countWish" resultType="int">
+		select count(*) from wishlist
+		where userId=#{userId} and itemNum=#{itemNum}
+	</select>
+</mapper>

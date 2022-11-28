@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<select id="getCount" parameterType="qnaJoinDto"
+		resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM board_qna
+		<choose>
+			<when test="title != null and content != null">
+				WHERE title LIKE '%'||#{title}||'%' OR
+				content  LIKE '%'||#{content}||'%'
+			</when>
+			<when test="title != null">
+				WHERE title LIKE '%'||#{title}||'%'
+			</when>
+			<when test="writer != null">
+				WHERE writer LIKE '%'||#{writer}||'%'
+			</when>
+		</choose>
+	</select>
+	<select id="getList" parameterType="qnaJoinDto" resultType="qnaJoinDto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 						  <!-- 2. ROWNUM 부여하고 -->
+			FROM
+				(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
+				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,tbl_items.itemNum<!-- 1. board_file로 부터 정렬하고 -->
+				FROM board_qna,tbl_items
+				where board_qna.itemNum=tbl_items.itemNum
+				<choose> <!-- mybatis가 지원하는 동적쿼리 -->
+					<when test="title != null and content != null">
+						and title LIKE '%'||#{title}||'%' OR content LIKE '%${content}%' <!-- 조건이 트루면 이것만 추가한다. false면 아래로 내려간다. -->
+					</when>
+					<when test="title != null">
+						and title LIKE '%${title}%' <!-- '%'||#{title}||'%' 이것 과 같다.(EL이 아니고 mybatis 라이브러리가 해석해주는 것)[미리 만들어 놓고 실행한다] -->
+					</when>
+					<when test="writer != null">
+						and writer LIKE '%${writer}%' <!-- 모든 조건이 false면 where 절이 안들어가므로 모든 글이 검색된다. -->
+					</when>
+				</choose>
+				ORDER BY num DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+	<select id="getCount2" resultType="int" parameterType="qnaJoinDto">
+		select nvl(max(ROWNUM),0)
+		from board_qna
+		where itemNum=#{itemNum}
+		
+	</select>
+	<select id="getList2" resultType="qnaJoinDto" parameterType="qnaJoinDto">
+		SELECT * 
+			FROM
+   			(
+   				SELECT result1.*, ROWNUM AS rnum
+   				FROM
+       			(SELECT num, (select itemImg from tbl_items where itemNum=#{itemNum}) as itemImg, writer, title, viewCount, 
+				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+				FROM board_qna
+		
+		where board_qna.itemNum=#{itemNum}
+		ORDER BY num DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		
+		
+	</select>
+	
+	<insert id="insert" parameterType="qnaDto">
+		INSERT INTO board_qna
+		(num, writer, itemNum, title, content, viewCount, regdate)
+		VALUES(board_qna_seq.NEXTVAL, #{writer}, #{itemNum}, #{title}, #{content},
+		#{viewCount}, SYSDATE)	
+	</insert>
+	
+	<select id="getData" parameterType="qnaDto"
+		resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num, writer, title, content, viewCount, 
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
+			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
+			FROM board_qna
+			<choose>
+				<when test="title != null and content != null">
+					WHERE title LIKE '%'||#{title}||'%' OR
+					content  LIKE '%'||#{content}||'%'
+				</when>
+				<when test="title != null">
+					WHERE title LIKE '%'||#{title}||'%'
+				</when>
+				<when test="writer != null">
+					WHERE writer LIKE '%'||#{writer}||'%'
+				</when>
+			</choose>
+			ORDER BY num DESC) result1
+		WHERE num=#{num }
+		
+	</select>
+	<select id="getData2" parameterType="int"
+		resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num, writer, title, content, viewCount, 
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
+			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
+			FROM board_qna
+			ORDER BY num DESC) result1
+		WHERE num=#{num }
+	</select>	
+	<select id="getData3" parameterType="int" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num, writer, title, content, viewCount, 
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
+			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
+			FROM board_qna
+			where itemNum=#{itemNum}
+			ORDER BY num DESC) result1
+		WHERE num=#{num}
+	</select>
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_qna
+		WHERE num=#{num}
+	</delete>
+	<update id="addViewCount" parameterType="int">
+		UPDATE board_qna
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
+	<update id="update" parameterType="qnaDto">
+		UPDATE board_qna
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	<select id="qnalist" parameterType="String" resultType="qnaJoinDto">
+		select q.num,q.writer,q.title,q.content,q.viewCount,q.regdate,q.itemNum,
+				i.itemName,i.itemImg
+		from board_qna q, tbl_items i
+		where q.itemNum=i.itemNum and q.writer=#{writer}
+		order by q.regdate DESC
+	</select>
+</mapper>

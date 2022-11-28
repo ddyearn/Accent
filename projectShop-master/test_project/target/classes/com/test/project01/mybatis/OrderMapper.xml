@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+
+	<insert id="insert" parameterType="ordersDto">
+		insert into orders
+		(orderNum,userId,orderRec,userAddr1,userAddr2,userAddr3,orderPhone1,orderPhone2,orderDate,msg,payment,allPrice)
+		values(orders_seq.NEXTVAL,#{userId},#{orderRec},#{userAddr1},#{userAddr2},#{userAddr3},#{orderPhone1},#{orderPhone2},sysdate,#{msg},#{payment},#{allPrice})
+	</insert>
+	<insert id="detailInsert" parameterType="orderDetailDto">
+		insert into order_detail
+		(odNum,orderNum,itemNum,quantity)
+		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{quantity})
+	</insert>
+	<select id="getOrderNum" resultType="int" parameterType="String">
+		select orderNum 
+		from orders
+		where userId=#{userId}
+		order by orderNum ASC
+	</select>
+	
+	<select id="getList" resultType="orderDetailJoinDto" parameterType="orderDetailJoinDto">
+		select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			o.delivery, o.orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		     where o.userId = #{userId}
+		         and o.orderNum = #{orderNum}
+	</select>
+	
+	<select  id="orderInfo" parameterType="ordersDto" resultType="ordersDto">
+		select orderNum,orderRec,orderPhone1,orderPhone2,userAddr1,userAddr2,userAddr3,orderDate,payment,allPrice,delivery
+		from orders
+		where userId=#{userId} and orderNum=#{orderNum}
+	</select>
+	<select id="getOrderNum2" resultType="int" parameterType="String">
+		select orderNum 
+		from orders
+		where userId=#{userId}
+		order by orderNum DESC
+	</select>
+</mapper>
